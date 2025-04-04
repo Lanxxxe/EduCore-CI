@@ -38,8 +38,8 @@
                                 <form action="">
                                     <div class="mb-md-5 mt-md-4 pb-5">
     
-                                        <h5 class="fw-bold text-center mb-4 text-uppercase">Administrator</h5>
-                                        <h5 class="fw-bold text-center mb-2 text-uppercase">Login</h5>
+                                        <h5 class="fw-bold text-center mb-4 text-uppercase">Learning Management System</h5>
+                                        <h5 class="fw-bold text-center mb-2 text-uppercase">Administrator Login</h5>
     
                                         <div data-mdb-input-init class="form-outline form-white mb-4 mt-4">
                                             <label class="form-label" for="typeEmailX">Email</label>
@@ -51,7 +51,7 @@
                                             <input type="password" id="typePasswordX" class="form-control form-control-md" />
                                         </div>
     
-                                        <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
+                                        <p class="small text-primary mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
     
                                         <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-md w-100 px-5" type="submit">Login</button>
     

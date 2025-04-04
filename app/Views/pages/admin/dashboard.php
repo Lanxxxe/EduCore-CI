@@ -30,17 +30,13 @@
                         <div class="small-box text-bg-primary">
                             <div class="inner d-flex align-items-start justify-content-between">
                                 <div>
-                                    <h3> 
-                                    </h3>
-                                    <p>Order Queue</p>
+                                    <h3>6</h3>
+                                    <p>Student</p>
                                 </div>
-                                <i class="bi bi-clock" style="font-size: 50px;"></i>
+                                <i class="bi bi-mortarboard" style="font-size: 50px;"></i>
                             </div>
-                            <a
-                                href="#"
-                                class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
-                            >
-                                View Pending Orders <i class="bi bi-link-45deg"></i>
+                            <a href="<?= base_url('admin/accounts') ?>" class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">
+                                View Student Accounts <i class="bi bi-link-45deg"></i>
                             </a>
                         </div>
                         <!--end::Small Box Widget 1-->
@@ -50,16 +46,13 @@
                         <div class="small-box text-bg-success">
                             <div class="inner d-flex align-items-center justify-content-between">
                                 <div>
-                                    <h3></h3>
-                                    <p>Customer Feedback</p>
+                                    <h3>7</h3>
+                                    <p>Faculty</p>
                                 </div>
-                                <i class="bi bi-chat-left" style="font-size: 50px;"></i>
+                                <i class="bi bi-people" style="font-size: 50px;"></i>
                             </div>
-                            <a
-                                href="#"
-                                class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
-                            >
-                                Read customer reviews <i class="bi bi-link-45deg"></i>
+                            <a href="<?= base_url('admin/students') ?>" class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover" >
+                                View Faculty Accounts <i class="bi bi-link-45deg"></i>
                             </a>
                         </div>
                         <!--end::Small Box Widget 2-->
@@ -69,16 +62,13 @@
                         <div class="small-box text-bg-warning">
                             <div class="inner d-flex align-items-center justify-content-between">
                                 <div>
-                                    <h3></h3>
-                                    <p>Total Sales</p>
+                                    <h3>0</h3>
+                                    <p>Classes</p>
                                 </div>
                                 <i class="bi bi-bar-chart" style="font-size: 50px;"></i>
                             </div>
-                            <a
-                                href="#"
-                                class="small-box-footer link-dark link-underline-opacity-0 link-underline-opacity-50-hover"
-                            >
-                                View Sales Performance <i class="bi bi-link-45deg"></i>
+                            <a href="#" class="small-box-footer link-dark link-underline-opacity-0 link-underline-opacity-50-hover" >
+                                View Classes <i class="bi bi-link-45deg"></i>
                             </a>
                         </div>
                     </div>
