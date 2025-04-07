@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Controllers\Faculty; // Correct namespace for subfolder
 use App\Controllers\BaseController; // Import BaseController
 

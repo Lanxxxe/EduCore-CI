@@ -35,25 +35,25 @@
                             <h3 class="card-title">Students Account</h3>
                         </div>
                         <!-- /.card-header -->
-                        <form action="<?= base_url('admin/createAccount') ?>" method="post">
+                        <form action="<?= base_url('admin/createStudentAccount') ?>" method="post">
                             <?= csrf_field() ?>
 
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="studentID">Student ID</label>
-                                            <input type="text" class="form-control form-control-sm" id="studentID" name="studentID" required>
+                                            <label for="student_id">Student ID</label>
+                                            <input type="text" class="form-control form-control-sm" id="student_id" name="student_id" required>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="program">Program</label>
-                                            <select class="form-select form-select-sm" aria-label="Small select example">
+                                            <select class="form-select form-select-sm" name="program" aria-label="Small select example">
                                                 <option selected>Select a Program</option>
-                                                <option value="1">BSIT</option>
-                                                <option value="2">Education</option>
-                                                <option value="3">Three</option>
+                                                <option value="BSIT">BSIT</option>
+                                                <option value="Education">Education</option>
+                                                <option value="Three">Three</option>
                                             </select>
                                         </div>
                                     </div>
@@ -86,15 +86,15 @@
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="email">Birthday</label>
-                                            <input type="datetime" class="form-control form-control-sm" id="email" name="email" required>
+                                            <label for="birthday">Birthday</label>
+                                            <input type="date" class="form-control form-control-sm" id="birthday" name="birthday" required>
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="email">Age</label>
-                                            <input type="number" class="form-control form-control-sm" id="email" name="email" required>
+                                            <label for="age">Age</label>
+                                            <input type="number" class="form-control form-control-sm" id="age" name="age" required>
                                         </div>
                                     </div>
 

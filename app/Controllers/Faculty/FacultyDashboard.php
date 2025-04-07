@@ -13,6 +13,7 @@ class FacultyDashboard extends BaseController
         ];
         
         return 
+        
             view('templates/faculty/header', $data)
             . view('pages/faculty/dashboard')
             . view('templates/faculty/footer')

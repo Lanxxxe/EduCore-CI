@@ -10,7 +10,7 @@ class StudentsAccounts extends Model {
         'student_id', 'email', 'password'
     ];
     
-    public function getstudentsAccounts($studentID = false) {
+    public function getStudentsAccounts($studentID = false) {
         if ($studentID === false) {
             return $this->findAll();
         }

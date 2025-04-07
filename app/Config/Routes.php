@@ -31,7 +31,7 @@ $routes->match(['GET', 'POST'],'admin/editAccount/(:num)', [Maintenance::class, 
 
 // Maintenance: Student
 $routes->get('admin/students', [Maintenance::class, 'getStudentsAccounts']);
-$routes->get('admin/createStudentAccount', [Maintenance::class, 'createStudentAccount']);
+$routes->match(['GET', 'POST'], 'admin/createStudentAccount', [Maintenance::class, 'createStudentAccount']);
 
 // End Admin Routes
 

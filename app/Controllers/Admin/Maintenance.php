@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use App\Models\PersonnelAccounts;
+use App\Models\StudentInformation;
 use App\Models\StudentsAccounts;
 use CodeIgniter\Exceptions\PageNotFoundException;
 use Exception;
@@ -200,10 +201,10 @@ class Maintenance extends BaseController {
         ;
     }
 
-
     public function createStudentAccount() {
         $session = session();
-        $model = model(StudentsAccounts::class);
+        $studentsAccountModel = model(StudentsAccounts::class);
+        $studentsInfoModel = model(StudentInformation::class);
         helper('form');
 
         $data = [
@@ -211,7 +212,65 @@ class Maintenance extends BaseController {
         ];
 
         if ($this->request->getMethod() === 'POST') {
-
+            // Validate form inputs
+            $rules = [
+                'student_id' => 'required|is_unique[students_account.student_id]',
+                'email' => 'required|valid_email|is_unique[students_account.email]',
+                'password' => 'required|min_length[6]',
+                'program' => 'required',
+                'firstname' => 'required',
+                'lastname' => 'required',
+                'birthday' => 'required|valid_date',
+                'age' => 'required|integer',
+            ];
+        
+            if (!$this->validate($rules)) {
+                $session->setFlashdata('error', 'Validation error occurred.');
+                $data['validation'] = $this->validator;
+            } else {
+                try {
+                    $db = \Config\Database::connect();
+                    $db->transStart(); // Start transaction
+        
+                    // Save to students_account
+                    $accountData = [
+                        'student_id' => $this->request->getPost('student_id'),
+                        'email' => $this->request->getPost('email'),
+                        'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
+                    ];
+        
+                    $studentsAccountModel->save($accountData);
+                    $accountId = $studentsAccountModel->insertID();
+        
+                    // Save to students_information
+                    $infoData = [
+                        'student_id' => $accountId,
+                        'firstname' => $this->request->getPost('firstname'),
+                        'middlename' => $this->request->getPost('middlename'),
+                        'lastname' => $this->request->getPost('lastname'),
+                        'program' => $this->request->getPost('program'),
+                        'age' => $this->request->getPost('age'),
+                        'birthday' => $this->request->getPost('birthday'),
+                    ];
+        
+                    $studentsInfoModel->save($infoData);
+        
+                    $db->transComplete(); // Commit transaction if everything is OK
+        
+                    if ($db->transStatus() === false) {
+                        // Something went wrong
+                        $db->transRollback();
+                        $session->setFlashdata('error', 'Failed to create student account. Transaction rolled back.');
+                    } else {
+                        $session->setFlashdata('success', 'Student account successfully created.');
+                        return redirect()->to('/admin/students');
+                    }
+                } catch (\Exception $e) {
+                    // Rollback on exception and show error
+                    $db->transRollback();
+                    $session->setFlashdata('error', 'An exception occurred: ' . $e->getMessage());
+                }
+            }
         }
 
         return view('templates/admin/header', $data)

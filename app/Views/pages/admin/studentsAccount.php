@@ -40,30 +40,25 @@
                             <thead>
                                 <tr>
                                     <th>Student ID</th>
-                                    <th>Name</th>
                                     <th>Email</th>
-                                    <th>Program</th>
-                                    <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php if ($account_list !== []): ?>
                                     <?php foreach ($account_list as $person): ?>
-                                        <tr>                                            <td><?= esc($person['lastname']) . ', ' . $person['firstname'] . ' ' . $person['middlename']; ?></td>
+                                        <tr>                                            
+                                            <td><?= esc($person['student_id']); ?></td>
                                             <td><?= esc($person['email']); ?></td>
-                                            <td><?= esc($person['role']); ?></td>
-                                            <td><?= esc($person['school_id']); ?></td>
-                                            <td><?= esc($person['contact_number']); ?></td>
                                             <td>
-                                                <a href="<?= base_url('admin/editAccount/') . esc($person['id']) ?>" class="btn btn-info btn-sm">
-                                                    <i class="fas fa-edit"></i> View
+                                                <a href="<?= base_url('admin/editAccount/') . esc($person['student_id']) ?>" class="btn btn-primary btn-sm">
+                                                    <i class="bi bi-eye"></i> View
                                                 </a>
-                                                <a href="<?= base_url('admin/editAccount/') . esc($person['id']) ?>" class="btn btn-info btn-sm">
-                                                    <i class="fas fa-edit"></i> Edit
+                                                <a href="<?= base_url('admin/editAccount/') . esc($person['student_id']) ?>" class="btn btn-warning btn-sm">
+                                                    <i class="bi bi-pencil-square"></i> Edit
                                                 </a>
                                                 <button type="button" class="btn btn-danger btn-sm delete-btn" data-id="<?= esc($person['id']); ?>">
-                                                    <i class="fas fa-trash"></i> Delete
+                                                    <i class="bi bi-trash"></i> Delete
                                                 </button>
                                             </td>
                                         </tr>
@@ -91,7 +86,7 @@
             $("#personnelTable").DataTable({
                 "responsive": true,
                 "lengthChange": true,
-                "autoWidth": false,
+                "autoWidth": true,
                 "order": [[1, 'asc']]
             });
             
