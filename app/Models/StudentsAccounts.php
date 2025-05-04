@@ -17,4 +17,8 @@ class StudentsAccounts extends Model {
         
         return $this->where(['id' => $studentID])->first();
     }
+
+    public function countTotalStudents() {
+        return $this->countAll();
+    }
 }

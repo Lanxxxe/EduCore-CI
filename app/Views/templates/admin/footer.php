@@ -1,10 +1,7 @@
         
         </div>
-        
-
         <script>
             document.addEventListener('DOMContentLoaded', function() { 
-                // Display SweetAlert messages
                 <?php if(session()->getFlashdata('error')): ?>
                     Swal.fire({
                         icon: 'error',

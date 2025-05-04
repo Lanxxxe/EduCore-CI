@@ -1,14 +1,21 @@
 <?php
 
-namespace App\Controllers\Admin; // Correct namespace for subfol
-use App\Controllers\BaseController; // Import BaseController
-
+namespace App\Controllers\Admin;
+use App\Controllers\BaseController; 
+use App\Models\PersonnelAccounts;
+use App\Models\StudentsAccounts;
 
 class Dashboard extends BaseController
 {
     public function dashboard()
     {
-        $data['title'] = 'Home';
+        $studentsModel = model(StudentsAccounts::class);
+        $personnelsModel = model(PersonnelAccounts::class);
+        $data = [
+            'registered_student' => $studentsModel->countTotalStudents(),
+            'registered_personnel' => $personnelsModel->countPersonnelAccounts(),
+            'title' => 'Home'
+        ];
         
         return view('templates/admin/header', $data)
             . view('pages/admin/dashboard')

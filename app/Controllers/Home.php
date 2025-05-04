@@ -16,4 +16,8 @@ class Home extends BaseController
     public function admin():string {
         return view('pages/admin/index');
     }
+
+    public function welcome():string {
+        return view('welcome_message');
+    }
 }

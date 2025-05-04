@@ -30,7 +30,7 @@
                         <div class="small-box text-bg-primary">
                             <div class="inner d-flex align-items-start justify-content-between">
                                 <div>
-                                    <h3>6</h3>
+                                    <h3><?= esc($registered_student) ?></h3>
                                     <p>Student</p>
                                 </div>
                                 <i class="bi bi-mortarboard" style="font-size: 50px;"></i>
@@ -46,7 +46,7 @@
                         <div class="small-box text-bg-success">
                             <div class="inner d-flex align-items-center justify-content-between">
                                 <div>
-                                    <h3>7</h3>
+                                    <h3><?= esc($registered_personnel) ?></h3>
                                     <p>Faculty</p>
                                 </div>
                                 <i class="bi bi-people" style="font-size: 50px;"></i>

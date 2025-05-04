@@ -18,4 +18,8 @@ class PersonnelAccounts extends Model {
         
         return $this->where(['id' => $personnelID])->first();
     }
+
+    public function countPersonnelAccounts() {
+        return $this->countAll();
+    }
 }

@@ -42,14 +42,14 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="student_id">Student ID</label>
+                                            <label for="student_id">Student ID<span class="text-danger">*</span></label>
                                             <input type="text" class="form-control form-control-sm" id="student_id" name="student_id" required>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="program">Program</label>
-                                            <select class="form-select form-select-sm" name="program" aria-label="Small select example">
+                                            <label for="program">Program<span class="text-danger">*</span></label>
+                                            <select class="form-select form-select-sm" name="program" aria-label="Select program">
                                                 <option selected>Select a Program</option>
                                                 <option value="BSIT">BSIT</option>
                                                 <option value="Education">Education</option>
@@ -64,7 +64,7 @@
                                 <div class="row mt-2">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="firstname">First Name</label>
+                                            <label for="firstname">First Name<span class="text-danger">*</span></label>
                                             <input type="text" class="form-control form-control-sm" id="firstname" name="firstname" required>
                                         </div>
                                     </div>
@@ -76,7 +76,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="lastname">Last Name</label>
+                                            <label for="lastname">Last Name<span class="text-danger">*</span></label>
                                             <input type="text" class="form-control form-control-sm" id="lastname" name="lastname" required>
                                         </div>
                                     </div>
@@ -86,14 +86,14 @@
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="birthday">Birthday</label>
+                                            <label for="birthday">Birthday<span class="text-danger">*</span></label>
                                             <input type="date" class="form-control form-control-sm" id="birthday" name="birthday" required>
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="age">Age</label>
+                                            <label for="age">Age<span class="text-danger">*</span></label>
                                             <input type="number" class="form-control form-control-sm" id="age" name="age" required>
                                         </div>
                                     </div>
@@ -105,14 +105,14 @@
                                 <div class="row mt-2">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="email">Email</label>
+                                            <label for="email">Email<span class="text-danger">*</span></label>
                                             <input type="email" class="form-control form-control-sm" id="email" name="email" required>
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="password">Password</label>
+                                            <label for="password">Password<span class="text-danger">*</span></label>
                                             <input type="password" class="form-control form-control-sm" id="password" name="password" required>
                                         </div>
                                     </div>

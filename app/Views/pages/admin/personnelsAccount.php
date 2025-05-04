@@ -1,26 +1,19 @@
 <main class="app-main">
     <div class="app-content-header">
-    <!--begin::Container-->
-    <div class="container-fluid">
-        <!--begin::Row-->
-        <div class="row">
-            <div class="col-sm-6">
-                <h3 class="mb-0">School Personnels</h3>
-            </div>
-
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-end">
-                    <li class="breadcrumb-item"><a href="#">Maintenance</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">School Personnels</li>
-                </ol>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3 class="mb-0">School Personnels</h3>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-end">
+                        <li class="breadcrumb-item"><a href="#">Maintenance</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">School Personnels</li>
+                    </ol>
+                </div>
             </div>
         </div>
-        <!--end::Row-->
     </div>
-    <!--end::Container-->
-    </div>
-
-    <!-- Your App Content-->
     <div class="app-content">
         <div class="container-fluid">
             <div class="row">
@@ -34,7 +27,6 @@
                             </a>
                         </div>
                     </div>
-                    <!-- /.card-header -->
                     <div class="card-body">
                         <table id="personnelTable" class="table table-bordered table-striped">
                             <thead>
@@ -73,16 +65,12 @@
                             </tbody>
                         </table>
                     </div>
-                    <!-- /.card-body -->
                 </div>
-                <!-- /.card -->
             </div>
-            <!-- /.col -->
             </div>
         </div>
     </div>
 </main>
-
 <script>
     $(function () {
             $("#personnelTable").DataTable({
@@ -92,7 +80,6 @@
                 "order": [[1, 'asc']]
             });
             
-            // Delete confirmation
             $('.delete-btn').on('click', function() {
                 const id = $(this).data('id');
                 

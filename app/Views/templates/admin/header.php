@@ -19,14 +19,12 @@
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
 
-
 </head>
 
     <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
         <div class="app-wrapper">
 
         <nav class="app-header navbar navbar-expand bg-body">
-            <!--begin::Container-->
             <div class="container-fluid">
                 <ul class="navbar-nav">
                 <li class="nav-item">
@@ -35,22 +33,17 @@
                     </a>
                 </li>
                 </ul>
-
             </div>
-            <!--end::Container-->
         </nav>
 
-        <!--begin::Sidebar-->
         <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
             <div class="sidebar-brand">
                 <a href="./index.html" class="brand-link">
                 <span class="brand-text fw-light">Administrator</span>
                 </a>
             </div>
-            <!--begin::Sidebar Wrapper-->
             <div class="sidebar-wrapper">
                 <nav class="mt-2">
-                <!--begin::Sidebar Menu-->
                 <ul
                     class="nav sidebar-menu flex-column"
                     data-lte-toggle="treeview"
@@ -88,17 +81,7 @@
                         </li>
                     </ul>
                     </li>
-                    
-                    <!-- <li class="nav-item">
-                    <a href="./generate/theme.html" class="nav-link">
-                        <i class="nav-icon bi bi-palette"></i>
-                        <p>Order List</p>
-                    </a>
-                    </li>  -->
                 </ul>
-                <!--end::Sidebar Menu-->
                 </nav>
             </div>
-            <!--end::Sidebar Wrapper-->
         </aside>
-        <!--end::Sidebar-->

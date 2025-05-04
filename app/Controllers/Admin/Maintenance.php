@@ -5,10 +5,10 @@ use App\Controllers\BaseController;
 use App\Models\PersonnelAccounts;
 use App\Models\StudentInformation;
 use App\Models\StudentsAccounts;
-use CodeIgniter\Exceptions\PageNotFoundException;
 use Exception;
 
 class Maintenance extends BaseController {
+    
     public function getPersonnelsAccounts() {
         $model = model(PersonnelAccounts::class);
 
@@ -33,7 +33,6 @@ class Maintenance extends BaseController {
             'title' => 'Create New Account'
         ];
     
-
         if ($this->request->getMethod() === 'POST') {
             // Define validation rules
             $validationRules = [
@@ -183,8 +182,6 @@ class Maintenance extends BaseController {
         $session->setFlashdata('success', 'Account deleted successfully.');
 
         return redirect()->to('/admin/accounts');
-
-
     }
     
     public function getStudentsAccounts() {
@@ -279,6 +276,5 @@ class Maintenance extends BaseController {
         ;
 
     }
-
 
 }

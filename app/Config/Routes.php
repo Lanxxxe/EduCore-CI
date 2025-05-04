@@ -15,18 +15,24 @@ use App\Controllers\Student\StudentGrades;
  * @var RouteCollection $routes
  */
 $routes->get('/', [Home::class ,'index']);
+$routes->get('/welcome', [Home::class ,'welcome']);
 $routes->get('/faculty', [Home::class, 'faculty']);
 $routes->get('/admin', [Home::class, 'admin']);
 
 // Admin
 $routes->get('admin/dashboard', [Dashboard::class, 'dashboard']); 
-$routes->get('admin/accounts', [Maintenance::class, 'getPersonnelsAccounts']); 
 
 
 // Maintenance routes
+
 // Maintenance: Personnel
+// Gets personnel account
+$routes->get('admin/accounts', [Maintenance::class, 'getPersonnelsAccounts']); 
+// Creates personnel account
 $routes->match(['GET', 'POST'], 'admin/createAccount', [Maintenance::class, 'createPersonnelsAccount']);
+// Deletes Personnel Account
 $routes->get('admin/deleteAccount/(:num)', [Maintenance::class, 'deletePersonnelsAccount']); 
+// Edit Personnel Account
 $routes->match(['GET', 'POST'],'admin/editAccount/(:num)', [Maintenance::class, 'updatePersonnelsAccount']); 
 
 // Maintenance: Student
@@ -34,6 +40,7 @@ $routes->get('admin/students', [Maintenance::class, 'getStudentsAccounts']);
 $routes->match(['GET', 'POST'], 'admin/createStudentAccount', [Maintenance::class, 'createStudentAccount']);
 
 // End Admin Routes
+
 
 // Faculty Routes
 $routes->get('faculty/dashboard', [FacultyDashboard::class, 'dashboard']);

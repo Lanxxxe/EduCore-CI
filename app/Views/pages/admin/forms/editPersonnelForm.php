@@ -1,13 +1,9 @@
 <?= session()->getFlashdata('error') ?>
 <?= validation_list_errors() ?>
 
-
-<!-- Your main app body -->
 <main class="app-main">
     <div class="app-content-header">
-    <!--begin::Container-->
     <div class="container-fluid">
-        <!--begin::Row-->
         <div class="row">
             <div class="col-sm-6">
                 <h3 class="mb-0">School Personnels</h3>
@@ -20,12 +16,9 @@
                 </ol>
             </div>
         </div>
-        <!--end::Row-->
     </div>
-    <!--end::Container-->
     </div>
 
-    <!-- Your App Content-->
     <div class="app-content">
         <div class="container-fluid">
             <div class="row">
@@ -35,7 +28,6 @@
                             <h3 class="card-title">Personnel Information</h3>
                         </div>
                         <?php if (!empty($accounts_list  )): ?>
-                        <!-- /.card-header -->
                         <form action="<?= base_url('admin/editAccount/' . esc($accounts_list['id'])) ?>" method="post">
                             <input type="hidden" name="id" value="<?php echo $accounts_list['id']; ?>">
                             <div class="card-body">
@@ -101,9 +93,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- /.card-body -->
-                            
+                            </div>                            
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary btn-sm">Update</button>
                                 <a href="<?= base_url('admin/accounts') ?>" class="btn btn-default btn-sm">Cancel</a>
@@ -119,7 +109,6 @@
                             </div>
                         <?php endif; ?>
                     </div>
-                    <!-- /.card -->
                 </div>
             </div>
         </div>

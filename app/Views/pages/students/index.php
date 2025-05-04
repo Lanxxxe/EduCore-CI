@@ -35,7 +35,7 @@
                 </div>
                 <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
                     <h2 class="text-info text-center">Learning Management System</h2>
-                    <h4 class="text-center fw-bold my-4 mt-4">Login</h4>
+                    <h4 class="text-center fw-bold my-4 mt-4">Student Login</h4>
                     <form class="">
                         <!-- Email input -->
                         <div data-mdb-input-init class="form-outline mb-4">

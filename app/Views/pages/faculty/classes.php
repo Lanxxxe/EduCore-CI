@@ -1,7 +1,7 @@
 <div class="main p-3 ">
     <div class="d-flex align-items-center justify-content-between shadow-sm px-3">
-        <p class="fs-4 fw-bold px-4 py-3 ">Hello! <span class="text-primary">John Doe</span></p>
-        <a href="" class="btn btn-sm btn-primary">Add Class</a>
+        <p class="fs-4 fw-bold px-4 py-3 ">Hello Teacher <span class="text-primary">John Doe</span></p>
+        <a href="" class="btn btn-sm btn-primary"><i class="bi bi-plus"></i> Add Class</a>
     </div>
 
     <p class="fs-5 fw-bold ps-3 mt-4">Your Classes</p>
