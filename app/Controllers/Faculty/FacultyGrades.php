@@ -1,28 +1,20 @@
 <?php
-
 namespace App\Controllers\Faculty; // Correct namespace for subfolder
 use App\Controllers\BaseController; // Import BaseController
 
 
-class FacultyDashboard extends BaseController
+class FacultyGrades extends BaseController
 {
-    public function dashboard()
-    {
+    public function grades() {
         $data = [
-            'title' => 'Dashboard'
+            'title' => 'Grades'
         ];
         
         return 
             view('templates/faculty/header', $data)
-            . view('pages/faculty/dashboard')
+            . view('pages/faculty/grades')
             . view('templates/faculty/footer')
         ;
     }
 
-
-    public function logout(){
-        $session = session();
-        $session->destroy();
-        return redirect()->to('/faculty');
-    }
 }

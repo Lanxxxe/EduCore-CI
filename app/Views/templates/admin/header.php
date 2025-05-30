@@ -20,7 +20,6 @@
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
 
 </head>
-
     <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
         <div class="app-wrapper">
 
@@ -39,7 +38,7 @@
         <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
             <div class="sidebar-brand">
                 <a href="./index.html" class="brand-link">
-                <span class="brand-text fw-light">Administrator</span>
+                <img class="mx-auto d-block" src="<?= base_url('assets/images/EduCoreLogo.png'); ?>" alt="Educore Logo" width="100">
                 </a>
             </div>
             <div class="sidebar-wrapper">
@@ -68,16 +67,22 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                        <a href="<?= base_url('admin/accounts') ?>" class="nav-link">
-                            <i class="nav-icon bi bi-people"></i>
-                            <p>Personnels</p>
-                        </a>
+                            <a href="<?= base_url('admin/accounts') ?>" class="nav-link">
+                                <i class="nav-icon bi bi-people"></i>
+                                <p>Personnels</p>
+                            </a>
                         </li>
                         <li class="nav-item">
-                        <a href="<?= base_url('admin/students')  ?>" class="nav-link">
-                            <i class="nav-icon bi bi-mortarboard"></i>
-                            <p>Students</p>
-                        </a>
+                            <a href="<?= base_url('admin/students')  ?>" class="nav-link">
+                                <i class="nav-icon bi bi-mortarboard"></i>
+                                <p>Students</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url('admin/students')  ?>" class="nav-link">
+                                <i class="nav-icon bi bi-mortarboard"></i>
+                                <p>Programs</p>
+                            </a>
                         </li>
                     </ul>
                     </li>

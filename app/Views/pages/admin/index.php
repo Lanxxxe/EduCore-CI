@@ -33,28 +33,30 @@
             <div class="container vh-100 ">
                 <div class="row d-flex justify-content-center align-items-center h-100">
                     <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                        <div class="card bg-primary text-white" style="border-radius: 1rem;">
-                            <div class="card-body p-5">
+                        <div class="card shadow" style="border-radius: 1rem;">
+                            <div class="card-body py-3 px-5">
                                 <form action="">
                                     <div class="mb-md-5 mt-md-4 pb-5">
-    
-                                        <h5 class="fw-bold text-center mb-4 text-uppercase">Learning Management System</h5>
-                                        <h5 class="fw-bold text-center mb-2 text-uppercase">Administrator Login</h5>
-    
-                                        <div data-mdb-input-init class="form-outline form-white mb-4 mt-4">
-                                            <label class="form-label" for="typeEmailX">Email</label>
-                                            <input type="email" id="typeEmailX" class="form-control form-control-md" placeholder="ex.marie.admin@evsu.edu.ph" />
+                                        <div class="text-center">
+                                            <!-- <i class="bi bi-mortarboard-fill text-primary" style="font-size: 3rem;"></i> -->
+                                            <img class="mx-auto d-block" src="<?= base_url('assets/images/EduCoreLogo.png'); ?>" alt="Educore Logo">
+                                            <h5 class="fw-bold mb-2 mt-2 text-uppercase">Learning Management System</h5>
+                                            <h5 class="mb-2 text-muted">Administrator Login</h5>
+
                                         </div>
-    
+                                        <div data-mdb-input-init class="form-outline mb-4 mt-4">
+                                            <label class="form-label" for="typeEmailX">Email</label>
+                                            <input type="email" id="typeEmailX" class="form-control form-control-md" placeholder="ex.marie.faculty@evsu.edu.ph" />
+                                        </div>
                                         <div data-mdb-input-init class="form-outline form-white mb-4">
                                             <label class="form-label" for="typePasswordX">Password</label>
                                             <input type="password" id="typePasswordX" class="form-control form-control-md" />
                                         </div>
     
-                                        <p class="small text-primary mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
+                                        <p class="small mb-5 pb-lg-2"><a class="" href="#!">Forgot password?</a></p>
     
-                                        <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-md w-100 px-5" type="submit">Login</button>
-    
+                                        <button data-mdb-button-init data-mdb-ripple-init class="btn btn-info btn-md w-100 px-5" type="submit">Login</button>
+
                                     </div>
                                 </form>
                             </div>

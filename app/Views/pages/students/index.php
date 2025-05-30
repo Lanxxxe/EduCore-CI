@@ -12,7 +12,6 @@
 
     <title>Student Login</title>
 
-
     <style>
         .divider:after,
         .divider:before {
@@ -34,7 +33,8 @@
                     class="img-fluid" alt="Phone image">
                 </div>
                 <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-                    <h2 class="text-info text-center">Learning Management System</h2>
+                    <img class="mx-auto d-block" src="<?= base_url('assets/images/EduCoreLogo.png'); ?>" alt="Educore Logo">
+                    <!-- <h2 class="text-info text-center">Learning Management System</h2> -->
                     <h4 class="text-center fw-bold my-4 mt-4">Student Login</h4>
                     <form class="">
                         <!-- Email input -->

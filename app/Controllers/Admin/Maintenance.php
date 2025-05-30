@@ -32,7 +32,7 @@ class Maintenance extends BaseController {
         $data = [
             'title' => 'Create New Account'
         ];
-    
+
         if ($this->request->getMethod() === 'POST') {
             // Define validation rules
             $validationRules = [
@@ -91,6 +91,8 @@ class Maintenance extends BaseController {
             . view('templates/admin/footer');
     }
 
+
+    
     public function updatePersonnelsAccount($id) {
         $session = session();
         $model = model(PersonnelAccounts::class);

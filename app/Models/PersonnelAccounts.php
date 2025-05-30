@@ -18,8 +18,19 @@ class PersonnelAccounts extends Model {
         
         return $this->where(['id' => $personnelID])->first();
     }
-
+    
     public function countPersonnelAccounts() {
         return $this->countAll();
+    }
+
+
+    public function checkAccount($email, $password){
+        $user = $this->where('email', $email)->first();
+        
+        if ($user && password_verify($password, $user['password'])) {
+            return $user;
+        }
+
+        return false;
     }
 }
