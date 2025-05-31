@@ -56,8 +56,11 @@ $routes->get('faculty/class', [FacultyClasses::class, 'classes']);
 $routes->get('faculty/students', [FacultyStudents::class, 'students']);
 $routes->get('faculty/grades', [FacultyGrades::class, 'grades']);
 $routes->get('faculty/profile', [FacultyProfile::class, 'profile']);
-$routes->match(['GET', 'POST'], 'faculty/addClass', [FacultyClasses::class, 'addClass'] );
 
+// Faculty Class routes
+$routes->match(['GET', 'POST'], 'faculty/addClass', [FacultyClasses::class, 'addClass'] );
+$routes->match(['GET', 'POST'], 'faculty/class/update/(:num)', [FacultyClasses::class, 'updateClass']);
+$routes->get('faculty/class/delete/(:num)', [FacultyClasses::class, 'deleteClass']);
 
 $routes->get('faculty/logout', [FacultyDashboard::class, 'logout']);
 // End Faculty Route
