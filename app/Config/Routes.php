@@ -13,18 +13,22 @@ use App\Controllers\Student\StudentHome;
 use App\Controllers\Student\StudentClass;
 use App\Controllers\Student\StudentGrades;
 use App\Controllers\Student\StudentProfile;
+use App\Controllers\Auth\UserAuthentication;
 
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', [Home::class ,'index']);
+// $routes->get('/', [Home::class ,'index']);
 $routes->get('/welcome', [Home::class ,'welcome']);
-$routes->get('/faculty', [Home::class, 'faculty']);
-$routes->get('/admin', [Home::class, 'admin']);
+// $routes->get('/faculty', [Home::class, 'faculty']);
+// $routes->get('/admin', [Home::class, 'admin']);
+$routes->match(['GET', 'POST'], '/', [UserAuthentication::class, 'studentLogin']);
+$routes->match(['GET', 'POST'], '/admin', [UserAuthentication::class, 'adminLogin']);
+$routes->match(['GET', 'POST'], '/faculty', [UserAuthentication::class, 'facultyLogin']);
+
 
 // Admin
 $routes->get('admin/dashboard', [Dashboard::class, 'dashboard']); 
-
 
 // Maintenance routes
 
@@ -42,6 +46,7 @@ $routes->match(['GET', 'POST'],'admin/editAccount/(:num)', [Maintenance::class, 
 $routes->get('admin/students', [Maintenance::class, 'getStudentsAccounts']);
 $routes->match(['GET', 'POST'], 'admin/createStudentAccount', [Maintenance::class, 'createStudentAccount']);
 
+$routes->get('admin/logout', [Dashboard::class, 'logout']);
 // End Admin Routes
 
 

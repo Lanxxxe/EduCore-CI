@@ -36,17 +36,17 @@
                     <img class="mx-auto d-block" src="<?= base_url('assets/images/EduCoreLogo.png'); ?>" alt="Educore Logo">
                     <!-- <h2 class="text-info text-center">Learning Management System</h2> -->
                     <h4 class="text-center fw-bold my-4 mt-4">Student Login</h4>
-                    <form class="">
+                    <form action="<?= site_url('/') ?>" method="post" id="loginForm">
                         <!-- Email input -->
                         <div data-mdb-input-init class="form-outline mb-4">
-                            <label class="form-label" for="form1Example13">Email address</label>
-                            <input type="email" id="form1Example13" class="form-control form-control-md" placeholder="john.doe@evsu.edu.ph" />
+                            <label class="form-label" for="email">Email address</label>
+                            <input type="email" name="email" id="email" class="form-control form-control-md" placeholder="john.doe@evsu.edu.ph" />
                         </div>
 
                         <!-- Password input -->
                         <div data-mdb-input-init class="form-outline mb-4">
-                            <label class="form-label" for="form1Example23">Password</label>
-                            <input type="password" id="form1Example23" class="form-control form-control-md" />
+                            <label class="form-label" for="password">Password</label>
+                            <input type="password" name="email" id="password" class="form-control form-control-md" />
                         </div>
 
                         <div class="d-flex mb-4">
@@ -62,5 +62,25 @@
     </section>
 
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() { 
+            <?php if(session()->getFlashdata('error')): ?>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: '<?= session()->getFlashdata('error'); ?>'
+                });
+            <?php endif; ?>
+            
+            <?php if(session()->getFlashdata('success')): ?>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: '<?= session()->getFlashdata('success'); ?>'
+                });
+            <?php endif; ?>
+        });
+    </script>
 </body>
 </html>

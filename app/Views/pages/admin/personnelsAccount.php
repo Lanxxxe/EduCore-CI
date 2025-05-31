@@ -45,7 +45,7 @@
                                         <tr>                                            <td><?= esc($person['lastname']) . ', ' . $person['firstname'] . ' ' . $person['middlename']; ?></td>
                                             <td><?= esc($person['email']); ?></td>
                                             <td><?= esc($person['role']); ?></td>
-                                            <td><?= esc($person['school_id']); ?></td>
+                                            <td><?= esc($person['department']); ?></td>
                                             <td><?= esc($person['contact_number']); ?></td>
                                             <td>
                                                 <a href="<?= base_url('admin/editAccount/') . esc($person['id']) ?>" class="btn btn-info btn-sm">

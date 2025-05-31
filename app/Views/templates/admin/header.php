@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- DataTables & Plugins -->
@@ -58,34 +59,41 @@
                     </li> 
 
                     <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon bi bi-tools"></i>
-                        <p>
-                        Maintenance
-                        <i class="nav-arrow bi bi-chevron-right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="<?= base_url('admin/accounts') ?>" class="nav-link">
-                                <i class="nav-icon bi bi-people"></i>
-                                <p>Personnels</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?= base_url('admin/students')  ?>" class="nav-link">
-                                <i class="nav-icon bi bi-mortarboard"></i>
-                                <p>Students</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?= base_url('admin/students')  ?>" class="nav-link">
-                                <i class="nav-icon bi bi-mortarboard"></i>
-                                <p>Programs</p>
-                            </a>
-                        </li>
-                    </ul>
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon bi bi-tools"></i>
+                            <p>
+                            Maintenance
+                            <i class="nav-arrow bi bi-chevron-right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?= base_url('admin/accounts') ?>" class="nav-link">
+                                    <i class="nav-icon bi bi-people"></i>
+                                    <p>Personnels</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('admin/students')  ?>" class="nav-link">
+                                    <i class="nav-icon bi bi-mortarboard"></i>
+                                    <p>Students</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('admin/students')  ?>" class="nav-link">
+                                    <i class="nav-icon bi bi-mortarboard"></i>
+                                    <p>Programs</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
+
+                    <li class="nav-item">
+                        <a href="<?= base_url('admin/logout')  ?>" class="nav-link">
+                            <i class="nav-icon bi bi-arrow-bar-left"></i>
+                            <p>Logout</p>
+                        </a>
+                    </li> 
                 </ul>
                 </nav>
             </div>

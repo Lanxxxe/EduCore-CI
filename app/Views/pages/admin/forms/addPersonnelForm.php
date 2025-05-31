@@ -24,7 +24,7 @@
                         <div class="card-header">
                             <h3 class="card-title">Personnel Information</h3>
                         </div>
-                        <form action="<?= base_url('admin/createAccount') ?>" method="post">
+                        <form action="<?= site_url('admin/createAccount') ?>" method="post">
                             <?= csrf_field() ?>
                             <div class="card-body">
                                 <div class="row">
@@ -67,7 +67,7 @@
                                             <label for="role">Role</label>
                                             <select class="form-control form-control-sm" id="role" name="role" required>
                                                 <option value="">Select Role</option>
-                                                <option value="Administrator">Administrator</option>
+                                                <option value="Admin">Administrator</option>
                                                 <option value="Faculty">Faculty</option>
                                             </select>
                                         </div>

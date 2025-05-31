@@ -35,7 +35,7 @@
                     <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                         <div class="card shadow" style="border-radius: 1rem;">
                             <div class="card-body py-3 px-5">
-                                <form action="">
+                                <form action="<?= site_url('/faculty') ?>" method="post" id="loginForm">
                                     <div class="mb-md-5 mt-md-4 pb-5">
                                         <div class="text-center">
                                             <!-- <i class="bi bi-mortarboard-fill text-primary" style="font-size: 3rem;"></i> -->
@@ -45,12 +45,12 @@
 
                                         </div>
                                         <div data-mdb-input-init class="form-outline mb-4 mt-4">
-                                            <label class="form-label" for="typeEmailX">Email</label>
-                                            <input type="email" id="typeEmailX" class="form-control form-control-md" placeholder="ex.marie.faculty@evsu.edu.ph" />
+                                            <label class="form-label" for="email">Email</label>
+                                            <input type="email" name="email" id="email" class="form-control form-control-md" placeholder="ex.marie.faculty@evsu.edu.ph" />
                                         </div>
                                         <div data-mdb-input-init class="form-outline form-white mb-4">
-                                            <label class="form-label" for="typePasswordX">Password</label>
-                                            <input type="password" id="typePasswordX" class="form-control form-control-md" />
+                                            <label class="form-label" for="password">Password</label>
+                                            <input type="password" name="password" id="password" class="form-control form-control-md" />
                                         </div>
                                         <p class="small mb-5 pb-lg-2"><a class="" href="#!">Forgot password?</a></p>
                                         <button data-mdb-button-init data-mdb-ripple-init class="btn btn-info btn-md w-100 px-5" type="submit">Login</button>
@@ -63,5 +63,25 @@
             </div>
         </section>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() { 
+            <?php if(session()->getFlashdata('error')): ?>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: '<?= session()->getFlashdata('error'); ?>'
+                });
+            <?php endif; ?>
+            
+            <?php if(session()->getFlashdata('success')): ?>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: '<?= session()->getFlashdata('success'); ?>'
+                });
+            <?php endif; ?>
+        });
+    </script>
 </body>
 </html>

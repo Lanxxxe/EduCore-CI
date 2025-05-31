@@ -41,7 +41,7 @@ class Maintenance extends BaseController {
                 'lastname'        => 'required|alpha_space|min_length[2]|max_length[50]',
                 'email'           => 'required|valid_email|is_unique[school_personnel.email]',
                 'password'        => 'required|min_length[6]',
-                'role'            => 'required|in_list[Administrator,Faculty]',
+                'role'            => 'required|in_list[Admin,Faculty]',
                 'department'      => 'permit_empty|alpha_numeric_space|max_length[100]',
                 'contact_number'  => 'permit_empty|numeric|min_length[10]|max_length[15]'
             ];
@@ -90,8 +90,6 @@ class Maintenance extends BaseController {
             . view('pages/admin/forms/addPersonnelForm')
             . view('templates/admin/footer');
     }
-
-
     
     public function updatePersonnelsAccount($id) {
         $session = session();
@@ -113,7 +111,7 @@ class Maintenance extends BaseController {
                 'lastname'        => 'required|alpha_space|min_length[2]|max_length[50]',
                 'email'           => 'required|valid_email',
                 'password'        => 'permit_empty|min_length[6]', // No hashing yet
-                'role'            => 'required|in_list[Administrator,Faculty]',
+                'role'            => 'required|in_list[Admin,Faculty]',
                 'department'      => 'permit_empty|alpha_numeric_space|max_length[100]',
                 'contact_number'  => 'permit_empty|numeric|min_length[10]|max_length[15]'
             ];

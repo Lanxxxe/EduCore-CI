@@ -21,4 +21,10 @@ class Dashboard extends BaseController
             . view('pages/admin/dashboard')
             . view('templates/admin/footer');
     }
+
+    public function logout(){
+        $session = session();
+        $session->destroy();
+        return redirect()->route('admin');
+    }
 }
