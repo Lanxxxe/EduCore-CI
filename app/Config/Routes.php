@@ -15,9 +15,6 @@ use App\Controllers\Student\StudentGrades;
 use App\Controllers\Student\StudentProfile;
 use App\Controllers\Auth\UserAuthentication;
 
-/**
- * @var RouteCollection $routes
- */
 // $routes->get('/', [Home::class ,'index']);
 $routes->get('/welcome', [Home::class ,'welcome']);
 // $routes->get('/faculty', [Home::class, 'faculty']);
@@ -69,8 +66,10 @@ $routes->get('faculty/logout', [FacultyDashboard::class, 'logout']);
 // Student Routes
 $routes->get('student/', [StudentHome::class, 'home']);
 $routes->get('student/class', [StudentClass::class, 'class']);
+$routes->match(['GET', 'POST'], 'student/joinClass', [StudentClass::class, 'joinClass']);
 $routes->get('student/grades', [StudentGrades::class, 'grades']);
 $routes->get('student/profile', [StudentProfile::class, 'profile']);
+$routes->get('student/logout', [StudentHome::class, 'logout']);
 
 
 

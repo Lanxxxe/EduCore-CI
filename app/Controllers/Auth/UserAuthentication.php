@@ -5,6 +5,7 @@ namespace App\Controllers\Auth;
 use App\Controllers\BaseController;
 use App\Models\PersonnelAccounts;
 use App\Models\StudentsAccounts;
+use App\Models\StudentInformation;
 
 
 class UserAuthentication extends BaseController {
@@ -85,8 +86,10 @@ class UserAuthentication extends BaseController {
             $student = $studentModel->where('email', $email)->first();
 
             if ($student && password_verify($password, $student['password'])) {
+                $studentInformationModel = new StudentInformation();
+                $studentInfo = $studentInformationModel->getStudentsInformation($student['id']);
                 $session->set([
-                    'user_id'   => $student['id'],
+                    'user_id'   => $studentInfo['id'],
                     'email'     => $student['email'],
                     'role'      => 'student',
                     'isLoggedIn'=> true

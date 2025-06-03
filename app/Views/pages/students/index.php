@@ -46,7 +46,7 @@
                         <!-- Password input -->
                         <div data-mdb-input-init class="form-outline mb-4">
                             <label class="form-label" for="password">Password</label>
-                            <input type="password" name="email" id="password" class="form-control form-control-md" />
+                            <input type="password" name="password" id="password" class="form-control form-control-md" />
                         </div>
 
                         <div class="d-flex mb-4">

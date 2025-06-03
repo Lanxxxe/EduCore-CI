@@ -1,6 +1,5 @@
 </div>
     
- 
 <script>
     document.addEventListener('DOMContentLoaded', function() { 
         <?php if(session()->getFlashdata('error')): ?>

@@ -1,8 +1,7 @@
 <?php
-namespace App\Controllers\Faculty; // Correct namespace for subfolder
-use App\Controllers\BaseController; // Import BaseController
+namespace App\Controllers\Faculty;
+use App\Controllers\BaseController;
 use App\Models\Classes;
-
 
 class FacultyClasses extends BaseController
 {

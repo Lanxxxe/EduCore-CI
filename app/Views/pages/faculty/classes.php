@@ -1,6 +1,6 @@
 <div class="main p-3 ">
     <div class="d-flex align-items-center justify-content-between shadow-sm px-3">
-        <p class="fs-4 fw-bold py-3">Hello Teacher <span class="text-primary">John Doe</span> <?= esc($id) ?> </p>
+        <p class="fs-4 fw-bold py-3">Hello Teacher <span class="text-primary"></span> <?= esc($id) ?> </p>
         <a href="<?= base_url('faculty/addClass')  ?>" class="btn btn-sm btn-primary"><i class="bi bi-plus"></i> Add Class</a>
     </div>
 

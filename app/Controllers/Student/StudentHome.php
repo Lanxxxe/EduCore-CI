@@ -19,4 +19,10 @@ class StudentHome extends BaseController
             . view('templates/student/footer')
         ;
     }
+
+    public function logout(){
+        $session = session();
+        $session->destroy();
+        return redirect()->to('/');
+    }
 }

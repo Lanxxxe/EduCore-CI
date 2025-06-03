@@ -31,7 +31,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 <p>Classes</p></div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">3</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= esc($numberOfClasses) ?></div>
                         </div>
                         <div class="col-auto">
                             <i class="bi bi-person-workspace fs-3 text-gray-300"></i>
@@ -99,51 +99,55 @@
     <p class="fs-5 fw-bold ps-3 mt-4">Your Classes</p>
 
     <div class="row row-cols-1 row-cols-md-3 g-4 mb-4 p-3 shadow-sm">
-        <div class="col">
-            <div class="card course-card">
-                <div class="card-img-top position-relative" style="height: 100px; background-color: #3262a8;">
-                    <span class="badge bg-success">Active</span>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Math 101</h5>
-                    <p class="card-text">Advanced Mathematics</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <small class="text-muted">32 Students</small>
-                        <a href="#" class="btn btn-sm btn-outline-primary">Manage</a>
+        <?php if ($classes !== []): 
+            foreach($classes as $class): ?>    
+                <div class="col">
+                    <div class="card h-100 course-card">
+                        <div class="card-img-top position-relative" style="height: 120px; background-color: #3262a8;">
+                            <span class="badge bg-success">Active</span>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title"><?= esc($class['course_code']) ?></h5>
+                            <p class="card-text"><?= esc($class['title']) ?></p>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="text-muted">
+                                    <i class="bi bi-people me-1"></i> 32 Students
+                                </span>
+                                <span class="text-muted">
+                                    <i class="bi bi-card-checklist me-1"></i> 5 Assignments
+                                </span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="dropdown">
+                                    <button class="btn btn-sm btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">
+                                        Manage
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#classDetailsModal"><i class="bi bi-info-circle me-2"></i>View Details</a></li>
+                                        <li><a class="dropdown-item" href="<?= site_url('faculty/class/update/' . esc($class['id'])) ?>"><i class="bi bi-people me-2"></i>Update</a></li>
+                                        <!-- <li><a class="dropdown-item" href="#"><i class="bi bi-people me-2"></i>View Students</a></li>
+                                        <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-plus me-2"></i>Add Assignment</a></li>
+                                        <li><a class="dropdown-item" href="#"><i class="bi bi-megaphone me-2"></i>Send Announcement</a></li>
+                                        <li><hr class="dropdown-divider"></li> -->
+                                        <li><a class="dropdown-item text-danger" href="<?= site_url('faculty/class/delete/' . esc($class['id'])) ?>"><i class="bi bi-archive me-2"></i>Delete Class</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card course-card">
-                <div class="card-img-top position-relative" style="height: 100px; background-color: #28a745;">
-                    <span class="badge bg-success">Active</span>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Science 202</h5>
-                    <p class="card-text">Physical Sciences</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <small class="text-muted">28 Students</small>
-                        <a href="#" class="btn btn-sm btn-outline-primary">Manage</a>
+                
+            <?php 
+            endforeach; 
+                else: ?>
+                    <div class="col-12">
+                        <div class="alert alert-info text-center" role="alert">
+                            <i class="bi bi-info-circle-fill"></i> No active classes found.
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card course-card">
-                <div class="card-img-top position-relative" style="height: 100px; background-color: #dc3545;">
-                    <span class="badge bg-success">Active</span>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">History 202</h5>
-                    <p class="card-text">World History</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <small class="text-muted">29 Students</small>
-                        <a href="#" class="btn btn-sm btn-outline-primary">Manage</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+                <?php
+            endif;
+            ?>
     </div>
 </div>
 
