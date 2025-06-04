@@ -16,7 +16,8 @@ class FacultyDashboard extends BaseController
             'title' => 'Dashboard',
             'id' => $session->get('user_id'),
             'classes' => $model->getClasses($faculty_id),
-            'numberOfClasses' => $model->countClasses($faculty_id)
+            'numberOfClasses' => $model->countClasses($faculty_id),
+            'totalStudents' => $model->countTotalStudents($faculty_id)
         ];
         
         return 

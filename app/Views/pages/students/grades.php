@@ -1,3 +1,19 @@
+<?php
+if ($gpa === 'N/A') {
+    $gpaBadge = '<span class="badge bg-secondary">No Grades</span>';
+} elseif ($gpa >= 90) {
+    $gpaBadge = '<span class="badge bg-success">Excellent</span>';
+} elseif ($gpa >= 85) {
+    $gpaBadge = '<span class="badge bg-primary">Very Good</span>';
+} elseif ($gpa >= 80) {
+    $gpaBadge = '<span class="badge bg-info text-dark">Good</span>';
+} elseif ($gpa >= 75) {
+    $gpaBadge = '<span class="badge bg-warning text-dark">Satisfactory</span>';
+} else {
+    $gpaBadge = '<span class="badge bg-danger">Needs Improvement</span>';
+}
+?>
+
 <div class="main p-3 ">
     <div class="d-flex align-items-center justify-content-between shadow-sm px-3">
         <p class="fs-4 fw-bold px-4 py-3 ">Hello! <span class="text-primary">Student</span></p>
@@ -14,18 +30,8 @@
                     <div class="col-md-4 mb-3 mb-md-0">
                         <h5 class="card-title">Overall GPA</h5>
                         <div class="d-flex align-items-baseline">
-                            <h2 class="me-2">3.65</h2>
-                            <span class="badge bg-success">Good Standing</span>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3 mb-md-0">
-                        <h5 class="card-title">Total Credit</h5>
-                        <div class="d-flex align-items-baseline">
-                            <h2 class="me-2">15</h2>
-                            <span class="text-muted">/ 120 Total</span>
-                        </div>
-                        <div class="progress mt-2" style="height: 6px;">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 12.5%;" aria-valuenow="12.5" aria-valuemin="0" aria-valuemax="100"></div>
+                            <h2 class="me-2"><?= esc($gpa) ?>%</h2>
+                            <?= $gpaBadge ?>
                         </div>
                     </div>
                 </div>
@@ -43,66 +49,41 @@
                         <thead>
                             <tr>
                                 <th>Course</th>
-                                <th>Term</th>
-                                <th>Credits</th>
-                                <th>Grade</th>
+                                <th>Midterm</th>
+                                <th>Finals</th>
+                                <th>GWA</th>
                                 <th>Status</th>
-                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="grade-A">
-                                <td>
-                                    <div class="fw-bold">Math 101</div>
-                                    <small class="text-muted">Advanced Mathematics</small>
-                                </td>
-                                <td>1st</td>
-                                <td>4</td>
-                                <td>A-</td>
-                                <td><span class="badge bg-success">In Progress</span></td>
-                                <td>
-                                    <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#gradeDetailsModal">Details</button>
-                                </td>
-                            </tr>
-                            <tr class="grade-A">
-                                <td>
-                                    <div class="fw-bold">History 202</div>
-                                    <small class="text-muted">World History</small>
-                                </td>
-                                <td>1st</td>
-                                <td>3</td>
-                                <td>A</td>
-                                <td><span class="badge bg-success">In Progress</span></td>
-                                <td>
-                                    <button class="btn btn-sm btn-outline-primary">Details</button>
-                                </td>
-                            </tr>
-                            <tr class="grade-B">
-                                <td>
-                                    <div class="fw-bold">English 101</div>
-                                    <small class="text-muted">Composition</small>
-                                </td>
-                                <td>1st</td>
-                                <td>3</td>
-                                <td>B</td>
-                                <td><span class="badge bg-success">In Progress</span></td>
-                                <td>
-                                    <button class="btn btn-sm btn-outline-primary">Details</button>
-                                </td>
-                            </tr>
-                            <tr class="grade-C">
-                                <td>
-                                    <div class="fw-bold">Science 202</div>
-                                    <small class="text-muted">Physical Sciences</small>
-                                </td>
-                                <td>1st</td>
-                                <td>4</td>
-                                <td>C+</td>
-                                <td><span class="badge bg-success">In Progress</span></td>
-                                <td>
-                                    <button class="btn btn-sm btn-outline-primary">Details</button>
-                                </td>
-                            </tr>
+                            <?php if (!empty($grades)): ?>
+                                <?php foreach ($grades as $grade): ?>
+                                    <tr>
+                                        <td>
+                                            <div class="fw-bold"><?= esc($grade['course_title']) ?></div>
+                                            <small class="text-muted"><?= esc($grade['course_description']) ?></small>
+                                        </td>
+                                        <td><?= esc($grade['midterm'] ?? 'N/A') ?></td>
+                                        <td><?= esc($grade['finals'] ?? 'N/A') ?></td>
+                                        <td><?= esc($grade['gwa'] ?? 'N/A') ?>%</td>
+                                        <td>
+                                            <?php
+                                                $midterm = $grade['midterm'] ?? null;
+                                                $finals = $grade['finals'] ?? null;
+                                                if (is_numeric($midterm) && is_numeric($finals)) {
+                                                    echo '<span class="badge bg-success">Completed</span>';
+                                                } else {
+                                                    echo '<span class="badge bg-secondary">In Progress</span>';
+                                                }
+                                            ?>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <tr>
+                                    <td colspan="5" class="text-center">No grades found.</td>
+                                </tr>
+                            <?php endif; ?>
                         </tbody>
                     </table>
                 </div>

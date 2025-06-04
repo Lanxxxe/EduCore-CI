@@ -14,6 +14,8 @@ use App\Controllers\Student\StudentClass;
 use App\Controllers\Student\StudentGrades;
 use App\Controllers\Student\StudentProfile;
 use App\Controllers\Auth\UserAuthentication;
+use App\Controllers\Student\ClassDetails;
+use App\Controllers\Student\StudentActivity;
 
 // $routes->get('/', [Home::class ,'index']);
 $routes->get('/welcome', [Home::class ,'welcome']);
@@ -50,10 +52,16 @@ $routes->get('admin/logout', [Dashboard::class, 'logout']);
 // Faculty Routes
 $routes->get('faculty/dashboard', [FacultyDashboard::class, 'dashboard']);
 $routes->get('faculty/class', [FacultyClasses::class, 'classes']);
+$routes->get('faculty/class/activities/(:num)', [FacultyClasses::class, 'classActivities']);
+$routes->match(['GET', 'POST'], 'faculty/class/activities/create', [FacultyClasses::class, 'addActivity']);
 $routes->get('faculty/students', [FacultyStudents::class, 'students']);
-$routes->get('faculty/grades', [FacultyGrades::class, 'grades']);
-$routes->get('faculty/profile', [FacultyProfile::class, 'profile']);
 
+$routes->get('faculty/grades', [FacultyGrades::class, 'grades']);
+$routes->post('faculty/class/update-grade', [FacultyGrades::class, 'updateGrade']);
+$routes->get('faculty/grades/class/(:num)', [FacultyGrades::class, 'gradesByClass/$1']);
+
+$routes->get('faculty/profile', [FacultyProfile::class, 'profile']);
+$routes->post('faculty/profile/update', [FacultyProfile::class, 'update']);
 // Faculty Class routes
 $routes->match(['GET', 'POST'], 'faculty/addClass', [FacultyClasses::class, 'addClass'] );
 $routes->match(['GET', 'POST'], 'faculty/class/update/(:num)', [FacultyClasses::class, 'updateClass']);
@@ -67,9 +75,12 @@ $routes->get('faculty/logout', [FacultyDashboard::class, 'logout']);
 $routes->get('student/', [StudentHome::class, 'home']);
 $routes->get('student/class', [StudentClass::class, 'class']);
 $routes->match(['GET', 'POST'], 'student/joinClass', [StudentClass::class, 'joinClass']);
+$routes->get('student/class/(:num)', [ClassDetails::class, 'view/$1']);
 $routes->get('student/grades', [StudentGrades::class, 'grades']);
 $routes->get('student/profile', [StudentProfile::class, 'profile']);
+$routes->post('student/profile/update', [StudentProfile::class, 'update']);
 $routes->get('student/logout', [StudentHome::class, 'logout']);
+$routes->post('student/activity/submit', [StudentActivity::class, 'submit']);
 
 
 

@@ -11,12 +11,12 @@
         <div class="profile-header mb-4">
                     <div class="row align-items-center">
                         <div class="col-auto">
-                            <img src="https://ui-avatars.com/api/?name=John+Student&background=224b82&color=fff&size=200" alt="Profile Picture" class="profile-img">
-                        </div>
+                            <img src="https://ui-avatars.com/api/?name=<?= esc($student['firstname']) ?>+<?= esc($student['lastname']) ?>&background=224b82&color=fff&size=200" alt="Profile Picture" class="profile-img">                        </div>
                         <div class="col">
-                            <h2 class="mb-1">John Student</h2>
-                            <p class="mb-0">Computer Science • Junior Year</p>
-                            <p class="mb-0">Student ID: 20215678</p>
+                            <h2 class="mb-1"><?= esc($student['firstname'] . ' ' . $student['lastname']) ?></h2>
+                            <p class="mb-0"><?= esc($student['program']) ?></p>
+                            <p class="mb-0">Student ID: <?= esc($account['student_id']) ?></p>
+
                         </div>
                         <div class="col-md-auto mt-3 mt-md-0">
                             <button class="btn btn-light me-2" data-bs-toggle="modal" data-bs-target="#editProfileModal">
@@ -38,13 +38,13 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label text-muted">Full Name</label>
-                                            <p class="mb-0 fw-medium">John Alex Student</p>
+                                            <p class="mb-0 fw-medium"><?= esc($student['firstname'] . ' ' . $student['middlename'] . ' ' . $student['lastname']) ?></p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label text-muted">Date of Birth</label>
-                                            <p class="mb-0 fw-medium">June 15, 2002</p>
+                                            <p class="mb-0 fw-medium"><?= date('F j, Y', strtotime($student['birthday'])) ?></p>
                                         </div>
                                     </div>
                                 </div>
@@ -52,7 +52,7 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label text-muted">Email Address</label>
-                                            <p class="mb-0 fw-medium">john.student@university.edu</p>
+                                            <p class="mb-0 fw-medium"><?= esc($account['email']) ?></p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -62,73 +62,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label text-muted">Address</label>
-                                            <p class="mb-0 fw-medium">23 Softball St. San Antonio, Paranaque City</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-0">
-                                            <label class="form-label text-muted">Emergency Contact</label>
-                                            <p class="mb-0 fw-medium">Mary Student (Parent) - (+63) 948 298 2192</p>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
-
-                        <div class="card mb-4">
-                            <div class="card-header bg-white">
-                                <h5 class="mb-0">Academic Information</h5>
-                            </div>
-                            <div class="card-body">
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label text-muted">Major</label>
-                                            <p class="mb-0 fw-medium">Computer Science</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label text-muted">Minor</label>
-                                            <p class="mb-0 fw-medium">Mathematics</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label text-muted">Academic Year</label>
-                                            <p class="mb-0 fw-medium">Junior (3rd Year)</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label text-muted">Enrollment Status</label>
-                                            <p class="mb-0 fw-medium">Full-time</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label text-muted">Advisor</label>
-                                            <p class="mb-0 fw-medium">Dr. Alan Turing</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-0">
-                                            <label class="form-label text-muted">Expected Graduation</label>
-                                            <p class="mb-0 fw-medium">May 2025</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
 
                     <!-- Sidebar Info -->
@@ -140,19 +75,7 @@
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
                                     <span>Current GPA</span>
-                                    <span class="badge bg-primary">3.65</span>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <span>CreditCompleted</span>
-                                    <span class="badge bg-primary">67</span>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <span>Current Credit</span>
-                                    <span class="badge bg-primary">15</span>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <span>Remaining Credit</span>
-                                    <span class="badge bg-primary">38</span>
+                                    <span class="badge bg-success"><?= esc($gpa) ?>%</span>
                                 </div>
                             </div>
                         </div>
@@ -161,4 +84,41 @@
     </div>
 </div>
 
-
+<div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form action="<?= site_url('student/profile/update') ?>" method="post">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" name="id" value="<?= esc($student['id']) ?>">
+          <div class="mb-3">
+            <label for="firstname" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="firstname" name="firstname" value="<?= esc($student['firstname']) ?>" required>
+          </div>
+          <div class="mb-3">
+            <label for="middlename" class="form-label">Middle Name</label>
+            <input type="text" class="form-control" id="middlename" name="middlename" value="<?= esc($student['middlename']) ?>">
+          </div>
+          <div class="mb-3">
+            <label for="lastname" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="lastname" name="lastname" value="<?= esc($student['lastname']) ?>" required>
+          </div>
+          <div class="mb-3">
+            <label for="birthday" class="form-label">Date of Birth</label>
+            <input type="date" class="form-control" id="birthday" name="birthday" value="<?= esc($student['birthday']) ?>" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email Address</label>
+            <input type="email" class="form-control" id="email" name="email" value="<?= esc($account['email']) ?>" required>
+          </div>
+          <!-- Add more fields as needed -->
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+      </div>
+    </form>
+  </div>

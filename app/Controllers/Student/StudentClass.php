@@ -19,7 +19,7 @@ class StudentClass extends BaseController
         $data = [
             'title' => 'Classes',
             'page' => 'Class',
-            'student' => $model->getStudentsInformation($studentID),
+            'student' => $model->studentInformation($studentID),
             'classes' => $classesModel->getStudentsClasses($studentID),
         ];
         
@@ -36,7 +36,7 @@ class StudentClass extends BaseController
         $classModel = new Classes();
         $classStudentsModel = new ClassStudents();
         $studentInformationModel = new StudentInformation();
-        $student = $studentInformationModel->getStudentsInformation($studentID);
+        $student = $studentInformationModel->studentInformation($studentID);
 
         try {
             $courseCode = $this->request->getPost('class_code');

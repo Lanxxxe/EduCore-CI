@@ -14,7 +14,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 <p>Active Students</p></div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">112</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= esc($totalStudents) ?></div>
                         </div>
                         <div class="col-auto">
                             <i class="bi bi-mortarboard fs-3 text-gray-300"></i>
@@ -111,26 +111,26 @@
                             <p class="card-text"><?= esc($class['title']) ?></p>
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <span class="text-muted">
-                                    <i class="bi bi-people me-1"></i> 32 Students
+                                    <i class="bi bi-people me-1"></i> <?= esc($class['student_count']) ?> Students
                                 </span>
                                 <span class="text-muted">
-                                    <i class="bi bi-card-checklist me-1"></i> 5 Assignments
+                                    <i class="bi bi-card-checklist me-1"></i> <?= esc($class['activity_count']) ?> Materials
                                 </span>
                             </div>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="dropdown">
-                                    <button class="btn btn-sm btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">
-                                        Manage
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-end">
-                                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#classDetailsModal"><i class="bi bi-info-circle me-2"></i>View Details</a></li>
-                                        <li><a class="dropdown-item" href="<?= site_url('faculty/class/update/' . esc($class['id'])) ?>"><i class="bi bi-people me-2"></i>Update</a></li>
+                                    <a class="btn btn-sm btn-outline-primary" href="<?= site_url('faculty/class/activities/' . esc($class['id'])) ?>">
+                                        <i class="bi bi-info-circle me-2"></i>View Details
+                                    </a>
+                                    <!-- <ul class="dropdown-menu dropdown-menu-end"> -->
+                                        <!-- <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#classDetailsModal"><i class="bi bi-info-circle me-2"></i>View Details</a></li> -->
+                                        <!-- <li><a class="dropdown-item" href="<?= site_url('faculty/class/update/' . esc($class['id'])) ?>"><i class="bi bi-people me-2"></i>Update</a></li> -->
                                         <!-- <li><a class="dropdown-item" href="#"><i class="bi bi-people me-2"></i>View Students</a></li>
                                         <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-plus me-2"></i>Add Assignment</a></li>
                                         <li><a class="dropdown-item" href="#"><i class="bi bi-megaphone me-2"></i>Send Announcement</a></li>
                                         <li><hr class="dropdown-divider"></li> -->
-                                        <li><a class="dropdown-item text-danger" href="<?= site_url('faculty/class/delete/' . esc($class['id'])) ?>"><i class="bi bi-archive me-2"></i>Delete Class</a></li>
-                                    </ul>
+                                        <!-- <li><a class="dropdown-item text-danger" href="<?= site_url('faculty/class/delete/' . esc($class['id'])) ?>"><i class="bi bi-archive me-2"></i>Delete Class</a></li> -->
+                                    <!-- </ul> -->
                                 </div>
                             </div>
                         </div>

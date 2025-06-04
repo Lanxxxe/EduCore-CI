@@ -1,6 +1,6 @@
 <div class="main p-3 ">
     <div class="d-flex align-items-center justify-content-between shadow-sm px-3">
-        <p class="fs-4 fw-bold py-3">Hello Teacher <span class="text-primary"></span> <?= esc($id) ?> </p>
+        <p class="fs-4 fw-bold py-3">Hello Teacher <span class="text-primary"><?= esc($faculty['firstname']) ?></span> </p>
         <a href="<?= base_url('faculty/addClass')  ?>" class="btn btn-sm btn-primary"><i class="bi bi-plus"></i> Add Class</a>
     </div>
 
@@ -20,10 +20,10 @@
                             <p class="card-text"><?= esc($class['title']) ?></p>
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <span class="text-muted">
-                                    <i class="bi bi-people me-1"></i> 32 Students
+                                    <i class="bi bi-people me-1"></i>  <?= esc($class['student_count']) ?> Students
                                 </span>
                                 <span class="text-muted">
-                                    <i class="bi bi-card-checklist me-1"></i> 5 Assignments
+                                    <i class="bi bi-card-checklist me-1"></i>  <?= esc($class['activity_count']) ?> Materials
                                 </span>
                             </div>
                             <div class="d-flex justify-content-between align-items-center">
@@ -32,7 +32,9 @@
                                         Manage
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-end">
-                                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#classDetailsModal"><i class="bi bi-info-circle me-2"></i>View Details</a></li>
+                                        <li>
+                                            <a class="dropdown-item" href="<?= site_url('faculty/class/activities/' . esc($class['id'])) ?>"><i class="bi bi-info-circle me-2"></i>View Details</a>
+                                        </li>
                                         <li><a class="dropdown-item" href="<?= site_url('faculty/class/update/' . esc($class['id'])) ?>"><i class="bi bi-people me-2"></i>Update</a></li>
                                         <!-- <li><a class="dropdown-item" href="#"><i class="bi bi-people me-2"></i>View Students</a></li>
                                         <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-plus me-2"></i>Add Assignment</a></li>
@@ -46,17 +48,17 @@
                     </div>
                 </div>
                 
-    <?php 
-    endforeach; 
-        else: ?>
-            <div class="col-12">
-                <div class="alert alert-info text-center" role="alert">
-                    <i class="bi bi-info-circle-fill"></i> No active classes found.
+        <?php 
+        endforeach; 
+            else: ?>
+                <div class="col-12">
+                    <div class="alert alert-info text-center" role="alert">
+                        <i class="bi bi-info-circle-fill"></i> No active classes found.
+                    </div>
                 </div>
-            </div>
-        <?php
-    endif;
-    ?>
+            <?php
+        endif;
+        ?>
 
     </div>
 </div>

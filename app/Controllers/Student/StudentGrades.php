@@ -3,14 +3,33 @@
 namespace App\Controllers\Student; // Correct namespace for subfolder
 use App\Controllers\BaseController; // Import BaseController
 
+use App\Models\GradesModel;
+
 
 class StudentGrades extends BaseController
 {
     public function grades()
     {
+        $session = session();
+        $student_id = $session->get('user_id');
+        $gradesModel = new GradesModel();
+        $grades = $gradesModel->getGradesByStudent($student_id);
+
+        $totalGwa = 0;
+        $gwaCount = 0;
+        foreach ($grades as $grade) {
+            if (isset($grade['gwa']) && is_numeric($grade['gwa'])) {
+                $totalGwa += $grade['gwa'];
+                $gwaCount++;
+            }
+        }
+        $overallGpa = $gwaCount > 0 ? round($totalGwa / $gwaCount, 2) : 'N/A';
+
         $data = [
             'title' => 'Grades',
-            'page' => 'Grades'
+            'page' => 'Grades',
+            'grades' => $grades,
+            'gpa' => $overallGpa
         ];
         
         return 
