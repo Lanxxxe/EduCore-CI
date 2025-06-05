@@ -13,6 +13,13 @@ class StudentClass extends BaseController
         $model = new StudentInformation();
         $classesModel = new Classes();
         $session = session();
+        // Check if user is logged in and is student
+        if ($session->get('user_role') !== 'student') {
+            // Optionally set a flash message
+            $session->setFlashdata('error', 'Access denied.');
+            // Redirect to login or another page
+            return redirect()->to('/');
+        }
 
         $studentID = $session->get('user_id');
         
@@ -32,6 +39,13 @@ class StudentClass extends BaseController
 
     public function joinClass() {
         $session = session();
+        // Check if user is logged in and is student
+        if ($session->get('user_role') !== 'student') {
+            // Optionally set a flash message
+            $session->setFlashdata('error', 'Access denied.');
+            // Redirect to login or another page
+            return redirect()->to('/');
+        }
         $studentID = $session->get('user_id');
         $classModel = new Classes();
         $classStudentsModel = new ClassStudents();

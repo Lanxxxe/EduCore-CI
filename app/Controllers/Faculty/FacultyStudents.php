@@ -8,6 +8,13 @@ class FacultyStudents extends BaseController
 {
     public function students() {
         $session = session();
+        // Check if user is logged in and is faculty
+        if ($session->get('user_role') !== 'Faculty') {
+            // Optionally set a flash message
+            $session->setFlashdata('error', 'Access denied.');
+            // Redirect to login or another page
+            return redirect()->to('/faculty');
+        }
         $faculty_id = $session->get('user_id');
         $personnelAccount = new PersonnelAccounts();
         $studentsInClass = new Classes();

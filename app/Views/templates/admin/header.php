@@ -79,12 +79,6 @@
                                     <p>Students</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="<?= base_url('admin/students')  ?>" class="nav-link">
-                                    <i class="nav-icon bi bi-mortarboard"></i>
-                                    <p>Programs</p>
-                                </a>
-                            </li>
                         </ul>
                     </li>
 

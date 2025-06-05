@@ -51,10 +51,7 @@
                                             <td><?= esc($person['student_id']); ?></td>
                                             <td><?= esc($person['email']); ?></td>
                                             <td>
-                                                <a href="<?= base_url('admin/editAccount/') . esc($person['student_id']) ?>" class="btn btn-primary btn-sm">
-                                                    <i class="bi bi-eye"></i> View
-                                                </a>
-                                                <a href="<?= base_url('admin/editAccount/') . esc($person['student_id']) ?>" class="btn btn-warning btn-sm">
+                                                <a href="<?= base_url('admin/editStudentAccount/') . esc($person['id']) ?>" class="btn btn-warning btn-sm">
                                                     <i class="bi bi-pencil-square"></i> Edit
                                                 </a>
                                                 <button type="button" class="btn btn-danger btn-sm delete-btn" data-id="<?= esc($person['id']); ?>">
@@ -83,13 +80,6 @@
 
 <script>
     $(function () {
-            $("#personnelTable").DataTable({
-                "responsive": true,
-                "lengthChange": true,
-                "autoWidth": true,
-                "order": [[1, 'asc']]
-            });
-            
             // Delete confirmation
             $('.delete-btn').on('click', function() {
                 const id = $(this).data('id');
@@ -104,7 +94,7 @@
                     confirmButtonText: 'Yes, delete it!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = "<?= base_url('admin/deleteAccount/') ?>" + id;
+                        window.location.href = "<?= base_url('admin/deleteStudentAccount/') ?>" + id;
                     }
                 });
             });

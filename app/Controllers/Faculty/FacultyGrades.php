@@ -10,6 +10,13 @@ class FacultyGrades extends BaseController
     public function grades()
     {
         $session = session();
+        // Check if user is logged in and is faculty
+        if ($session->get('user_role') !== 'Faculty') {
+            // Optionally set a flash message
+            $session->setFlashdata('error', 'Access denied.');
+            // Redirect to login or another page
+            return redirect()->to('/faculty');
+        }
         $faculty_id = $session->get('user_id');
         $personnelAccount = new PersonnelAccounts();
         $classes = new Classes();
@@ -54,6 +61,13 @@ class FacultyGrades extends BaseController
     public function updateGrade()
     {
         $session = session();
+        // Check if user is logged in and is faculty
+        if ($session->get('user_role') !== 'Faculty') {
+            // Optionally set a flash message
+            $session->setFlashdata('error', 'Access denied.');
+            // Redirect to login or another page
+            return redirect()->to('/faculty');
+        }
         $gradesModel = new GradesModel();
 
         $student_id = $this->request->getPost('student_id');

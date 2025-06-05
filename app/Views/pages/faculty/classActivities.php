@@ -9,20 +9,22 @@
     
     <?php if (!empty($activities)): ?>
         <?php foreach ($activities as $activity): ?>
-            <div class="card text-center my-4 w-75 mx-auto">
+            <div class="card my-4 w-75 mx-auto">
                 <div class="card-header bg-info text-white fw-bold">
                     <?= esc($activity['activity_type']) ?>
                 </div>
                 <div class="card-body">
                     <h4 class="card-title fw-bold"><?= esc($activity['title']) ?></h4>
                     <p class="card-text"><?= esc($activity['description']) ?></p>
-                    <p class="card-text text-muted">
+                  </div>
+                  <div class="card-footer text-body-secondary d-flex align-items-center justify-content-between">
+                    <p class="card-text text-muted mb-0">
                         Deadline: <?= ($activity['deadline'] === '0000-00-00 00:00:00' || empty($activity['deadline']))
                         ? 'No Due Date'
-                        : esc(date('F j, Y', strtotime($activity['deadline']))) ?><br>
+                        : esc(date('F j, Y', strtotime($activity['deadline']))) ?> | 
                         Max Score: <?= esc($activity['max_score']) ?>
                     </p>
-                    <a href="#" class="btn btn-primary">View Activity</a>
+                    <a href="<?= site_url('faculty/activity/' . $activity['id']) ?>" class="btn btn-primary btn-sm">View Activity</a>
                 </div>
             </div>
         <?php endforeach; ?>

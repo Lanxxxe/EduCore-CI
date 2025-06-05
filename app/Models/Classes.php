@@ -23,7 +23,10 @@ class Classes extends Model {
         ->findAll();
     }
 
-    public function countClasses($facultyID){
+    public function countClasses($facultyID = False){
+        if ($facultyID === False) {
+            return $this->countAll();
+        }
         return $this->where(['faculty_id' => $facultyID])->countAllResults();
     }
 

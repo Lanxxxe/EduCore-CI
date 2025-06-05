@@ -13,6 +13,13 @@ class ClassDetails extends BaseController
     public function view($class_id)
     {
         $session = session();
+        // Check if user is logged in and is student
+        if ($session->get('user_role') !== 'student') {
+            // Optionally set a flash message
+            $session->setFlashdata('error', 'Access denied.');
+            // Redirect to login or another page
+            return redirect()->to('/');
+        }
         $studentID = $session->get('user_id');
 
         // Check if student is enrolled in this class

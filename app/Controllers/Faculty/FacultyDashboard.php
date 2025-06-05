@@ -9,6 +9,13 @@ class FacultyDashboard extends BaseController
     public function dashboard()
     {
         $session = session();
+        // Check if user is logged in and is faculty
+        if ($session->get('user_role') !== 'Faculty') {
+            // Optionally set a flash message
+            $session->setFlashdata('error', 'Access denied.');
+            // Redirect to login or another page
+            return redirect()->to('/faculty');
+        }
         $faculty_id = $session->get('user_id');
         $model = new Classes();
 

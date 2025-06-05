@@ -25,7 +25,7 @@
                                 <h5 class="card-title"><?= esc($class['course_code'] . ' ' . $class['id']) ?></h5>
                                 <p class="card-text"><?= esc($class['title']) ?></p>
                                 <div class="d-flex align-items-center mb-3">
-                                    <img src="https://ui-avatars.com/api/?name=Smith&background=224b82&color=fff" class="rounded-circle me-2" width="24" height="24" alt="Professor">
+                                    <img src="https://ui-avatars.com/api/?name=<?= esc($class['firstname']) ?>+<?= esc($class['lastname']) ?>&background=224b82&color=fff" class="rounded-circle me-2" width="24" height="24" alt="Professor">
                                     <span class="text-muted">Prof. <?= esc($class['firstname']) . ' ' . esc($class['lastname']) ?></span>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center">

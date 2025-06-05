@@ -10,6 +10,14 @@ use Exception;
 class Maintenance extends BaseController {
     
     public function getPersonnelsAccounts() {
+        $session = session();
+        // Check if user is logged in and is admin
+        if ($session->get('user_role') !== 'Admin') {
+            // Optionally set a flash message
+            $session->setFlashdata('error', 'Access denied.');
+            // Redirect to login or another page
+            return redirect()->to('/admin');
+        }
         $model = model(PersonnelAccounts::class);
 
         $data = [
@@ -26,6 +34,13 @@ class Maintenance extends BaseController {
 
     public function createPersonnelsAccount() {
         $session = session();
+        // Check if user is logged in and is admin
+        if ($session->get('user_role') !== 'Admin') {
+            // Optionally set a flash message
+            $session->setFlashdata('error', 'Access denied.');
+            // Redirect to login or another page
+            return redirect()->to('/admin');
+        }
         $model = model(PersonnelAccounts::class);
         helper('form');
         
@@ -93,6 +108,13 @@ class Maintenance extends BaseController {
     
     public function updatePersonnelsAccount($id) {
         $session = session();
+        // Check if user is logged in and is admin
+        if ($session->get('user_role') !== 'Admin') {
+            // Optionally set a flash message
+            $session->setFlashdata('error', 'Access denied.');
+            // Redirect to login or another page
+            return redirect()->to('/admin');
+        }
         $model = model(PersonnelAccounts::class);
         helper('form');
         $account = $model->find($id);
@@ -165,6 +187,13 @@ class Maintenance extends BaseController {
 
     public function deletePersonnelsAccount($id) {
         $session = session();
+        // Check if user is logged in and is admin
+        if ($session->get('user_role') !== 'Admin') {
+            // Optionally set a flash message
+            $session->setFlashdata('error', 'Access denied.');
+            // Redirect to login or another page
+            return redirect()->to('/admin');
+        }
         $model = model(PersonnelAccounts::class);
 
         // Check if the account exists
@@ -185,6 +214,14 @@ class Maintenance extends BaseController {
     }
     
     public function getStudentsAccounts() {
+        $session = session();
+        // Check if user is logged in and is admin
+        if ($session->get('user_role') !== 'Admin') {
+            // Optionally set a flash message
+            $session->setFlashdata('error', 'Access denied.');
+            // Redirect to login or another page
+            return redirect()->to('/admin');
+        }
         $model = model(StudentsAccounts::class);
 
         $data = [
@@ -200,6 +237,13 @@ class Maintenance extends BaseController {
 
     public function createStudentAccount() {
         $session = session();
+        // Check if user is logged in and is admin
+        if ($session->get('user_role') !== 'admin') {
+            // Optionally set a flash message
+            $session->setFlashdata('error', 'Access denied.');
+            // Redirect to login or another page
+            return redirect()->to('/admin');
+        }
         $studentsAccountModel = model(StudentsAccounts::class);
         $studentsInfoModel = model(StudentInformation::class);
         helper('form');
@@ -277,4 +321,120 @@ class Maintenance extends BaseController {
 
     }
 
-}
+    public function updateStudentAccount($id){
+        $session = session();
+        // Check if user is logged in and is admin
+        if ($session->get('user_role') !== 'Admin') {
+            // Optionally set a flash message
+            $session->setFlashdata('error', 'Access denied.');
+            // Redirect to login or another page
+            return redirect()->to('/admin');
+        }
+        $studentsAccountModel = model(\App\Models\StudentsAccounts::class);
+        $studentsInfoModel = model(\App\Models\StudentInformation::class);
+        helper('form');
+
+        // Get current account and info
+        $account = $studentsAccountModel->find($id);
+        $info = $studentsInfoModel->where('student_id', $id)->first();
+
+        if (!$account || !$info) {
+            $session->setFlashdata('error', 'Student not found.');
+            return redirect()->to('/admin/students');
+        }
+
+        if ($this->request->getMethod() === 'POST') {
+            $rules = [
+                'email' => 'required|valid_email',
+                'program' => 'required',
+                'firstname' => 'required',
+                'lastname' => 'required',
+                'birthday' => 'required|valid_date',
+                'age' => 'required|integer',
+            ];
+
+            if (!$this->validate($rules)) {
+                $session->setFlashdata('error', 'Validation error occurred.');
+                $data['validation'] = $this->validator;
+            } else {
+                try {
+                    $db = \Config\Database::connect();
+                    $db->transStart();
+
+                    // Update students_account
+                    $accountData = [
+                        'email' => $this->request->getPost('email'),
+                    ];
+                    $password = $this->request->getPost('password');
+                    if (!empty($password)) {
+                        $accountData['password'] = password_hash($password, PASSWORD_DEFAULT);
+                    }
+                    $studentsAccountModel->update($id, $accountData);
+
+                    // Update students_information
+                    $infoData = [
+                        'firstname' => $this->request->getPost('firstname'),
+                        'middlename' => $this->request->getPost('middlename'),
+                        'lastname' => $this->request->getPost('lastname'),
+                        'program' => $this->request->getPost('program'),
+                        'age' => $this->request->getPost('age'),
+                        'birthday' => $this->request->getPost('birthday'),
+                    ];
+                    $studentsInfoModel->where('student_id', $id)->set($infoData)->update();
+
+                    $db->transComplete();
+
+                    if ($db->transStatus() === false) {
+                        $db->transRollback();
+                        $session->setFlashdata('error', 'Failed to update student account.');
+                    } else {
+                        $session->setFlashdata('success', 'Student account updated successfully.');
+                        return redirect()->to('/admin/students');
+                    }
+                } catch (\Exception $e) {
+                    $db->transRollback();
+                    $session->setFlashdata('error', 'An exception occurred: ' . $e->getMessage());
+                }
+            }
+        }
+
+        $data = [
+            'title' => 'Edit Student Account',
+            'account' => $account,
+            'info' => $info,
+        ];
+
+        return view('templates/admin/header', $data)
+            . view('pages/admin/forms/editStudentForm', $data)
+            . view('templates/admin/footer');
+    }
+
+    public function deleteStudentAccount($id) {
+        $session = session();
+        // Check if user is logged in and is admin
+        if ($session->get('user_role') !== 'Admin') {
+            // Optionally set a flash message
+            $session->setFlashdata('error', 'Access denied.');
+            // Redirect to login or another page
+            return redirect()->to('/admin');
+        }
+        $studentsAccountModel = model(\App\Models\StudentsAccounts::class);
+        $studentsInfoModel = model(\App\Models\StudentInformation::class);
+
+        // Check if the account exists
+        $account = $studentsAccountModel->find($id);
+
+        if (!$account) {
+            $session->setFlashdata('error', 'Student account not found.' . $id);
+            return redirect()->to('/admin/students');
+        }
+
+        // Delete both account and info
+        $studentsAccountModel->delete($id);
+        $studentsInfoModel->where('student_id', $id)->delete();
+
+        $session->setFlashdata('success', 'Student account deleted successfully.');
+        return redirect()->to('/admin/students');
+    }
+
+}   

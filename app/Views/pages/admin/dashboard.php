@@ -62,7 +62,7 @@
                         <div class="small-box text-bg-warning">
                             <div class="inner d-flex align-items-center justify-content-between">
                                 <div>
-                                    <h3>0</h3>
+                                    <h3><?= esc($classes) ?></h3>
                                     <p>Classes</p>
                                 </div>
                                 <i class="bi bi-bar-chart" style="font-size: 50px;"></i>

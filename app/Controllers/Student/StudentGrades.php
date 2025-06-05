@@ -11,6 +11,13 @@ class StudentGrades extends BaseController
     public function grades()
     {
         $session = session();
+        // Check if user is logged in and is student
+        if ($session->get('user_role') !== 'student') {
+            // Optionally set a flash message
+            $session->setFlashdata('error', 'Access denied.');
+            // Redirect to login or another page
+            return redirect()->to('/');
+        }
         $student_id = $session->get('user_id');
         $gradesModel = new GradesModel();
         $grades = $gradesModel->getGradesByStudent($student_id);

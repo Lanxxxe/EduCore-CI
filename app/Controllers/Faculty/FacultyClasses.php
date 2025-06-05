@@ -10,6 +10,13 @@ class FacultyClasses extends BaseController
     public function classes()
     {
         $session = session();
+        // Check if user is logged in and is faculty
+        if ($session->get('user_role') !== 'Faculty') {
+            // Optionally set a flash message
+            $session->setFlashdata('error', 'Access denied.');
+            // Redirect to login or another page
+            return redirect()->to('/faculty');
+        }
         $faculty_id = $session->get('user_id');
         $model = new Classes();
         $personnelAccount = new PersonnelAccounts();
@@ -31,6 +38,13 @@ class FacultyClasses extends BaseController
 
     public function addClass(){
         $session = session();
+        // Check if user is logged in and is faculty
+        if ($session->get('user_role') !== 'Faculty') {
+            // Optionally set a flash message
+            $session->setFlashdata('error', 'Access denied.');
+            // Redirect to login or another page
+            return redirect()->to('/faculty');
+        }
         helper('form');
         $data = [
             'title' => 'Add Class',
@@ -95,6 +109,13 @@ class FacultyClasses extends BaseController
 
     public function updateClass($id){
         $session = session();
+        // Check if user is logged in and is faculty
+        if ($session->get('user_role') !== 'Faculty') {
+            // Optionally set a flash message
+            $session->setFlashdata('error', 'Access denied.');
+            // Redirect to login or another page
+            return redirect()->to('/faculty');
+        }
         helper('form');
         $model = new Classes();
 
@@ -148,6 +169,13 @@ class FacultyClasses extends BaseController
 
     public function deleteClass($id){
         $session = session();
+        // Check if user is logged in and is faculty
+        if ($session->get('user_role') !== 'Faculty') {
+            // Optionally set a flash message
+            $session->setFlashdata('error', 'Access denied.');
+            // Redirect to login or another page
+            return redirect()->to('/faculty');
+        }
         $model = new Classes();
 
         try {
@@ -162,6 +190,13 @@ class FacultyClasses extends BaseController
     public function classActivities($class_id) {
 
         $session = session();
+        // Check if user is logged in and is faculty
+        if ($session->get('user_role') !== 'Faculty') {
+            // Optionally set a flash message
+            $session->setFlashdata('error', 'Access denied.');
+            // Redirect to login or another page
+            return redirect()->to('/faculty');
+        }
         $faculty_id = $session->get('user_id');
         $model = new Classes();
         $personnelAccount = new PersonnelAccounts();
@@ -183,60 +218,66 @@ class FacultyClasses extends BaseController
         ;
     }
 
-    public function addActivity()
-{
-    $session = session();
-    $activityModel = new ActivitiesModel();
-
-    // Log POST data
-    $postData = $this->request->getPost();
-    log_message('debug', 'POST DATA: ' . print_r($postData, true));
-
-    // Validate input
-    $validation = \Config\Services::validation();
-    $validation->setRules([
-        'activity_type' => 'required',
-        'title'         => 'required',
-        'description'   => 'required',
-        'deadline'      => 'permit_empty|valid_date',
-        'max_score'     => 'permit_empty|numeric',
-        'class_id'      => 'required'
-    ]);
-
-    if (!$validation->withRequest($this->request)->run()) {
-        log_message('error', 'Validation failed: ' . print_r($validation->getErrors(), true));
-        $session->setFlashdata('error', 'Validation failed');
-        return redirect()->back()->withInput();
-    }
-
-    // Prepare data for insertion
-    $data = [
-        'activity_type' => $postData['activity_type'],
-        'title'         => $postData['title'],
-        'description'   => $postData['description'],
-        'deadline'      => $postData['deadline'],
-        'max_score'     => $postData['max_score'],
-        'class_id'      => $postData['class_id']
-    ];
-
-        log_message('debug', 'Prepared INSERT data: ' . print_r($data, true));
-
-    try {
-        if ($activityModel->insert($data)) {
-            log_message('debug', 'Activity inserted successfully.');
-            $session->setFlashdata('success', 'Activity successfully added.');
-        } else {
-            // Model validation failed internally
-            $errors = $activityModel->errors();
-            log_message('error', 'Model insert errors: ' . print_r($errors, true));
-            $session->setFlashdata('error', 'Insert failed: ' . implode(', ', $errors));
+    public function addActivity() {
+        $session = session();
+        // Check if user is logged in and is faculty
+        if ($session->get('user_role') !== 'Faculty') {
+            // Optionally set a flash message
+            $session->setFlashdata('error', 'Access denied.');
+            // Redirect to login or another page
+            return redirect()->to('/faculty');
         }
-    } catch (\Exception $e) {
-        // Catch database or unexpected errors
-        log_message('critical', 'Exception during insert: ' . $e->getMessage());
-        $session->setFlashdata('error', 'Failed to add activity: ' . $e->getMessage());
-    }
+        $activityModel = new ActivitiesModel();
 
-    return redirect()->back();
-}
+        // Log POST data
+        $postData = $this->request->getPost();
+        log_message('debug', 'POST DATA: ' . print_r($postData, true));
+
+        // Validate input
+        $validation = \Config\Services::validation();
+        $validation->setRules([
+            'activity_type' => 'required',
+            'title'         => 'required',
+            'description'   => 'required',
+            'deadline'      => 'permit_empty|valid_date',
+            'max_score'     => 'permit_empty|numeric',
+            'class_id'      => 'required'
+        ]);
+
+        if (!$validation->withRequest($this->request)->run()) {
+            log_message('error', 'Validation failed: ' . print_r($validation->getErrors(), true));
+            $session->setFlashdata('error', 'Validation failed');
+            return redirect()->back()->withInput();
+        }
+
+        // Prepare data for insertion
+        $data = [
+            'activity_type' => $postData['activity_type'],
+            'title'         => $postData['title'],
+            'description'   => $postData['description'],
+            'deadline'      => $postData['deadline'],
+            'max_score'     => $postData['max_score'],
+            'class_id'      => $postData['class_id']
+        ];
+
+            log_message('debug', 'Prepared INSERT data: ' . print_r($data, true));
+
+        try {
+            if ($activityModel->insert($data)) {
+                log_message('debug', 'Activity inserted successfully.');
+                $session->setFlashdata('success', 'Activity successfully added.');
+            } else {
+                // Model validation failed internally
+                $errors = $activityModel->errors();
+                log_message('error', 'Model insert errors: ' . print_r($errors, true));
+                $session->setFlashdata('error', 'Insert failed: ' . implode(', ', $errors));
+            }
+        } catch (\Exception $e) {
+            // Catch database or unexpected errors
+            log_message('critical', 'Exception during insert: ' . $e->getMessage());
+            $session->setFlashdata('error', 'Failed to add activity: ' . $e->getMessage());
+        }
+
+        return redirect()->back();
+    }
 }

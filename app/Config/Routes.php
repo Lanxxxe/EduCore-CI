@@ -44,6 +44,9 @@ $routes->match(['GET', 'POST'],'admin/editAccount/(:num)', [Maintenance::class, 
 // Maintenance: Student
 $routes->get('admin/students', [Maintenance::class, 'getStudentsAccounts']);
 $routes->match(['GET', 'POST'], 'admin/createStudentAccount', [Maintenance::class, 'createStudentAccount']);
+$routes->match(['GET', 'POST'], 'admin/editStudentAccount/(:num)', [Maintenance::class, 'updateStudentAccount/$1']);
+$routes->get('admin/deleteStudentAccount/(:num)', [Maintenance::class, 'deleteStudentAccount/$1']);
+
 
 $routes->get('admin/logout', [Dashboard::class, 'logout']);
 // End Admin Routes
@@ -66,7 +69,7 @@ $routes->post('faculty/profile/update', [FacultyProfile::class, 'update']);
 $routes->match(['GET', 'POST'], 'faculty/addClass', [FacultyClasses::class, 'addClass'] );
 $routes->match(['GET', 'POST'], 'faculty/class/update/(:num)', [FacultyClasses::class, 'updateClass']);
 $routes->get('faculty/class/delete/(:num)', [FacultyClasses::class, 'deleteClass']);
-
+$routes->get('faculty/activity/(:num)', 'Faculty\ActivityView::view/$1');
 $routes->get('faculty/logout', [FacultyDashboard::class, 'logout']);
 // End Faculty Route
 

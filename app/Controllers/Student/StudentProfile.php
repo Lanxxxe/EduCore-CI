@@ -9,6 +9,13 @@ class StudentProfile extends BaseController
     public function profile()
     {
         $session = session();
+        // Check if user is logged in and is student
+        if ($session->get('user_role') !== 'student') {
+            // Optionally set a flash message
+            $session->setFlashdata('error', 'Access denied.');
+            // Redirect to login or another page
+            return redirect()->to('/');
+        }
         $studentID = $session->get('user_id'); // or the correct session key
 
         $studentInfoModel = new \App\Models\StudentInformation();
@@ -50,6 +57,13 @@ class StudentProfile extends BaseController
     public function update()
     {
         $session = session();
+        // Check if user is logged in and is student
+        if ($session->get('user_role') !== 'student') {
+            // Optionally set a flash message
+            $session->setFlashdata('error', 'Access denied.');
+            // Redirect to login or another page
+            return redirect()->to('/');
+        }
         $studentID = $session->get('user_id');
 
         $studentInfoModel = new \App\Models\StudentInformation();
